@@ -1,4 +1,4 @@
-package ni.gob.inss.sie.util;
+package ni.com.armalagon.util;
 
 import java.util.Calendar;
 import java.util.Date;

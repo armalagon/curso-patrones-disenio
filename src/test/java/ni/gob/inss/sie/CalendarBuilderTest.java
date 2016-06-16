@@ -9,7 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import ni.gob.inss.sie.util.CalendarBuilder;
+import ni.com.armalagon.util.CalendarBuilder;
 
 /**
  *

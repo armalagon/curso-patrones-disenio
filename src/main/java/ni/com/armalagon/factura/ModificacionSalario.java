@@ -1,4 +1,4 @@
-package ni.gob.inss.sie.factura;
+package ni.com.armalagon.factura;
 
 /**
  *

@@ -1,8 +1,8 @@
-package ni.gob.inss.sie.factura;
+package ni.com.armalagon.factura;
 
 import java.util.Date;
 
-import ni.gob.inss.sie.util.DateUtils;
+import ni.com.armalagon.util.DateUtils;
 
 /**
  *

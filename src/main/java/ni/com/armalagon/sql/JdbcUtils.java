@@ -1,4 +1,4 @@
-package ni.gob.inss.sql;
+package ni.com.armalagon.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package ni.gob.inss.sie.factura;
+package ni.com.armalagon.factura;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ni.gob.inss.sie.util.DateUtils;
+import ni.com.armalagon.util.DateUtils;
 
 /**
  *

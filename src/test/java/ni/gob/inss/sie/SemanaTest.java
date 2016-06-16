@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import ni.gob.inss.sie.factura.Semana;
+import ni.com.armalagon.factura.Semana;
 
 /**
  *
