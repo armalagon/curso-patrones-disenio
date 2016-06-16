@@ -33,15 +33,8 @@ public class Configuracion {
     public Periodo getPeriodo(int periodo) {
         Periodo objPeriodo = null;
 
-        if (cachePeriodos.containsKey(periodo)) {
-            objPeriodo = cachePeriodos.get(periodo);
-            System.out.printf("Se recupera el periodo %s del cache%n", objPeriodo);
-        } else {
-            objPeriodo = Periodo.crear(periodo);
-            cachePeriodos.put(periodo, objPeriodo);
-            System.out.printf("Se crea el periodo %s y agrega al cache%n", objPeriodo);
-        }
-        return objPeriodo;
+        objPeriodo = Periodo.crear(periodo);
+        return cachePeriodos.putIfAbsent(periodo, objPeriodo);
     }
 
     public Periodo getPeriodo(final Date fecha) {
