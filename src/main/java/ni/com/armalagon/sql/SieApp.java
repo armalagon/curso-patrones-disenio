@@ -16,8 +16,8 @@ public class SieApp {
     public static void main(String... args) {
         JdbcUrl url = new PostgreSQLUrl.Builder()
                 .database("sie")
-                .addProperty("user", "champu")
-                .addProperty("password", "champu")
+                .user("champu")
+                .password("champu")
                 .addProperty("ApplicationName", "sie")
                 .build();
         System.out.println("************ url: " + url.getUrl());
@@ -31,8 +31,8 @@ public class SieApp {
                 ResultSet rs = stmt.executeQuery("select * from public.novedad");
                 ) {
             while (rs.next()) {
-                System.out.printf("Nss %d, tipo: %d, %b%b%n", rs.getInt("nss"), rs.getInt("tipo_novedad")
-                        , rs.getBoolean("semana1"), rs.getBoolean("semana2"));
+                System.out.printf("Nss %d, tipo: %d, %s%s%n", rs.getInt("nss"), rs.getInt("tipo_novedad")
+                        , rs.getBoolean("semana1") ? "1" : "0", rs.getBoolean("semana2") ? "1" : "0");
             }
         } catch (SQLException e) {
             e.printStackTrace();

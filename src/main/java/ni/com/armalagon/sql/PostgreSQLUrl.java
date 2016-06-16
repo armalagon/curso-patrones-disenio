@@ -14,11 +14,11 @@ public class PostgreSQLUrl implements JdbcUrl {
     private static final String DRIVER_CLASSNAME = "org.postgresql.Driver";
     private static final String PROTOCOL = "jdbc:postgresql:";
 
-    private String host = "localhost";
-    private int port = 5432;
-    private String database;
-    private Properties props;
-    private String url;
+    private final String host;
+    private final int port;
+    private final String database;
+    private final Properties props;
+    private final String url;
 
     private PostgreSQLUrl(Builder builder) {
         host = builder.host;
@@ -61,9 +61,6 @@ public class PostgreSQLUrl implements JdbcUrl {
         private String database;
         private Properties props = new Properties();
 
-        public Builder() {
-        }
-
         public Builder host(String value) {
             host = value;
             return this;
@@ -77,6 +74,14 @@ public class PostgreSQLUrl implements JdbcUrl {
         public Builder database(String value) {
             database = value;
             return this;
+        }
+
+        public Builder user(String user) {
+            return addProperty("user", user);
+        }
+
+        public Builder password(String password) {
+            return addProperty("password", password);
         }
 
         public Builder addProperty(String name, String value) {
