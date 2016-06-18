@@ -31,7 +31,13 @@ public class Configuracion {
     }
 
     public Periodo getPeriodo(int periodo) {
-        return cachePeriodos.putIfAbsent(periodo, Periodo.crear(periodo));
+        if (cachePeriodos.containsKey(periodo)) {
+            return cachePeriodos.get(periodo);
+        } else {
+            Periodo objPeriodo = Periodo.crear(periodo);
+            cachePeriodos.put(periodo, objPeriodo);
+            return objPeriodo;
+        }
     }
 
     public Periodo getPeriodo(final Date fecha) {

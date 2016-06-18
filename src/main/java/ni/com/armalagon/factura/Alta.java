@@ -14,21 +14,33 @@ public class Alta extends Novedad {
         calculoSemana = new SemanaAlta();
     }
 
+    @Override
+    public void calcularSemana() {
+        semana = calculoSemana.calcular(fechaMovimiento);
+    }
+
+    @Override
+    public void setSemana(Semana semana) {
+        throw new UnsupportedOperationException("El calculo de la semana es automatico, operacion no soportada");
+    }
+
     public static void main(String... args) {
-        Novedad alta = new Alta();
-        alta.setNss(16146068);
-        alta.setFechaMovimiento(new Date());
-        alta.calcularSemana();
+        /*
+        Novedad descanso = new Descanso();
+        descanso.setNss(16146068);
+        descanso.setFechaMovimiento(new Date());
+        descanso.calcularSemana();
+        descanso.setSemana(new Semana(true, true, false, true, false));
 
-        System.out.println("Alta como una alta...Semana: " + alta.getSemana());
-
-        alta.setSemanaCalculable(new SemanaBaja());
-        alta.calcularSemana();
-        System.out.println("Alta como una baja...Semana: " + alta.getSemana());
+        System.out.println("Alta como una alta...Semana: " + descanso.getSemana());
+        */
 
         Periodo periodo = Periodo.crear(new Date());
-        System.out.println("Periodo: " + periodo + "...# semanas: " + periodo.getTotalSemana() + "...semana: " + periodo.getFormatoCadena());
+        System.out.println("Periodo: " + periodo + "...# semanas: " + periodo.getTotalSemana());
 
-        System.out.println("Periodo #1: " + Configuracion.getInstance().getPeriodo(201601));
+        /*System.out.println("Periodo #1: " + Configuracion.getInstance().getPeriodo(201601)
+                + ", # semana: " + Configuracion.getInstance().getPeriodo(201601).getTotalSemana());*/
+        System.out.println("Periodo #2: " + Configuracion.getInstance().getPeriodo(201501)
+                + ", # semana: " + Configuracion.getInstance().getPeriodo(201501).getTotalSemana());
     }
 }

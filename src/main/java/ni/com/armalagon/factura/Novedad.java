@@ -15,9 +15,7 @@ public abstract class Novedad {
 
     protected SemanaCalculable calculoSemana;
 
-    public void calcularSemana() {
-        semana = calculoSemana.calcular(fechaMovimiento);
-    }
+    public abstract void calcularSemana();
 
     public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
         this.calculoSemana = semanaCalculable;
