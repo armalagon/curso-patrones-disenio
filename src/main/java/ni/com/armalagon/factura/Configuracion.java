@@ -31,10 +31,7 @@ public class Configuracion {
     }
 
     public Periodo getPeriodo(int periodo) {
-        Periodo objPeriodo = null;
-
-        objPeriodo = Periodo.crear(periodo);
-        return cachePeriodos.putIfAbsent(periodo, objPeriodo);
+        return cachePeriodos.putIfAbsent(periodo, Periodo.crear(periodo));
     }
 
     public Periodo getPeriodo(final Date fecha) {
