@@ -12,6 +12,8 @@ import ni.com.armalagon.factura.Semana;
  * @since 1.0
  */
 public class Novedad implements Serializable {
+    private static final long serialVersionUID = -4255849171280077724L;
+
     private Integer id;
     private Integer nss;
     private Integer idTipoNovedad;
