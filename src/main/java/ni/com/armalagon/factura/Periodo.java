@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import ni.com.armalagon.util.DateUtils;
 
@@ -50,10 +52,7 @@ public class Periodo {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 17;
-        result = prime * result + formatoNumerico;
-        return result;
+        return new HashCodeBuilder(31, 17).append(formatoNumerico).hashCode();
     }
 
     @Override
@@ -65,9 +64,7 @@ public class Periodo {
         if (!(obj instanceof Periodo))
             return false;
         Periodo other = (Periodo) obj;
-        if (formatoNumerico != other.formatoNumerico)
-            return false;
-        return true;
+        return new EqualsBuilder().append(formatoNumerico, other.formatoNumerico).isEquals();
     }
 
     @Override

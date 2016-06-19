@@ -1,5 +1,8 @@
 package ni.com.armalagon.factura;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  *
  * @author armalagon
@@ -60,6 +63,32 @@ public class Semana {
         ultimaSemana = tramaSemanas.lastIndexOf("1") + 1;
     }
 
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(7, 51)
+                .append(semana1)
+                .append(semana2)
+                .append(semana3)
+                .append(semana4)
+                .append(semana5).hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (!(obj instanceof Semana))
+            return false;
+        Semana other = (Semana) obj;
+        return new EqualsBuilder()
+                .append(semana1, other.semana1)
+                .append(semana2, other.semana2)
+                .append(semana3, other.semana3)
+                .append(semana4, other.semana4)
+                .append(semana5, other.semana5).isEquals();
+    }
 
     @Override
     public String toString() {
