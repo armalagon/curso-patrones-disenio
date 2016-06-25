@@ -1,9 +1,11 @@
 package ni.com.armalagon.sql;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
+
+import ni.com.armalagon.dao.DAOException;
+import ni.com.armalagon.dao.DAOFactory;
+import ni.com.armalagon.dao.NovedadDAO;
+import ni.com.armalagon.modelo.Novedad;
 
 /**
  *
@@ -22,20 +24,39 @@ public class SieApp {
                 .build();
         System.out.println("************ url: " + url.getUrl());
 
-//            System.out.printf("Driver: %s%n", cnn.getMetaData().getDriverName());
-//            System.out.printf("Motor: %s-%s%n", cnn.getMetaData().getDatabaseProductName(), cnn.getMetaData().getDatabaseProductVersion());
+        DAOFactory daoFactory = null;
+        NovedadDAO novedadDAO = null;
+        List<Novedad> novedades = null;
 
-        try (
-                Connection cnn = JdbcUtils.open(url);
-                Statement stmt = cnn.createStatement();
-                ResultSet rs = stmt.executeQuery("select * from public.novedad");
-                ) {
-            while (rs.next()) {
-                System.out.printf("Nss %d, tipo: %d, %s%s%n", rs.getInt("nss"), rs.getInt("tipo_novedad")
-                        , rs.getBoolean("semana1") ? "1" : "0", rs.getBoolean("semana2") ? "1" : "0");
+        System.out.println("Consulta al esquema PUBLIC...");
+        daoFactory = DAOFactory.crearPublicDAOFactory(url);
+        novedadDAO = daoFactory.crearNovedadDAO();
+        try {
+            novedades = novedadDAO.buscarTodos();
+            for (Novedad novedad : novedades) {
+                System.out.printf("Novedad[nss=%d,semanas=%s]%n", novedad.getNss(), novedad.getSemana());
             }
-        } catch (SQLException e) {
+        } catch (DAOException e) {
             e.printStackTrace();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
