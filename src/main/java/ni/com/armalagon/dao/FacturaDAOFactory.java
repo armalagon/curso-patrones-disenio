@@ -8,7 +8,7 @@ import ni.com.armalagon.sql.JdbcUrl;
  * @version 1.0
  * @since 1.0
  */
-public class FacturaDAOFactory implements DAOFactory {
+class FacturaDAOFactory implements DAOFactory {
     private JdbcUrl url;
 
     public FacturaDAOFactory(JdbcUrl url) {

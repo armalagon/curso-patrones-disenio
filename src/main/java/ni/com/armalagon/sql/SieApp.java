@@ -15,6 +15,22 @@ import ni.com.armalagon.modelo.Novedad;
  */
 public class SieApp {
 
+    public static void printAll(JdbcUrl url, DAOFactory daoFactory) {
+        NovedadDAO novedadDAO = null;
+        List<Novedad> novedades = null;
+
+        novedadDAO = daoFactory.crearNovedadDAO();
+        try {
+            novedades = novedadDAO.buscarTodos();
+            for (Novedad novedad : novedades) {
+                System.out.printf("Novedad[nss=%d,semanas=%s]%n", novedad.getNss(), novedad.getSemana());
+            }
+        } catch (DAOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String... args) {
         JdbcUrl url = new PostgreSQLUrl.Builder()
                 .database("sie")
@@ -25,38 +41,13 @@ public class SieApp {
         System.out.println("************ url: " + url.getUrl());
 
         DAOFactory daoFactory = null;
-        NovedadDAO novedadDAO = null;
-        List<Novedad> novedades = null;
 
         System.out.println("Consulta al esquema PUBLIC...");
         daoFactory = DAOFactory.crearPublicDAOFactory(url);
-        novedadDAO = daoFactory.crearNovedadDAO();
-        try {
-            novedades = novedadDAO.buscarTodos();
-            for (Novedad novedad : novedades) {
-                System.out.printf("Novedad[nss=%d,semanas=%s]%n", novedad.getNss(), novedad.getSemana());
-            }
-        } catch (DAOException e) {
-            e.printStackTrace();
-        }
+        printAll(url, daoFactory);
+
+        System.out.println("Consulta al esquema FACTURA...");
+        daoFactory = DAOFactory.crearFacturaDAOFactory(url);
+        printAll(url, daoFactory);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
