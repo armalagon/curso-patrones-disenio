@@ -9,16 +9,7 @@ package ni.com.armalagon.factura;
 public class Alta extends Novedad {
 
     public Alta() {
+        nombreMovimiento = "Alta";
         calculoSemana = new SemanaAlta();
-    }
-
-    @Override
-    public void calcularSemana() {
-        semana = calculoSemana.calcular(fechaMovimiento);
-    }
-
-    @Override
-    public void setSemana(Semana semana) {
-        throw new UnsupportedOperationException("El calculo de la semana es automatico, operacion no soportada");
     }
 }

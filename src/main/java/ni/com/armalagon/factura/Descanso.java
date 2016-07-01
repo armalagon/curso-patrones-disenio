@@ -9,10 +9,7 @@ package ni.com.armalagon.factura;
 public class Descanso extends Novedad {
 
     public Descanso() {
-    }
-
-    @Override
-    public void calcularSemana() {
-        System.out.println("El calculo de la semana es manual, no se realiza calculo");
+        nombreMovimiento = "Descanso";
+        calculoSemana = new SinCalculoSemana();
     }
 }

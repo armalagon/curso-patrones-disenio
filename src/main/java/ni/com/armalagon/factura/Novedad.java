@@ -9,16 +9,15 @@ import java.util.Date;
  * @since 1.0
  */
 public abstract class Novedad {
+    protected String nombreMovimiento;
     protected int nss;
     protected Date fechaMovimiento;
     protected Semana semana;
 
     protected SemanaCalculable calculoSemana;
 
-    public abstract void calcularSemana();
-
-    public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
-        this.calculoSemana = semanaCalculable;
+    public String getNombreMovimiento() {
+        return nombreMovimiento;
     }
 
     public int getNss() {
@@ -43,5 +42,21 @@ public abstract class Novedad {
 
     public void setSemana(Semana semana) {
         this.semana = semana;
+    }
+
+    public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
+        this.calculoSemana = semanaCalculable;
+    }
+
+    public void calcularSemana() {
+        if (calculoSemana == null) {
+            throw new IllegalStateException("Se requiere la implementacion del calculo de las semanas");
+        }
+
+        if (calculoSemana instanceof SemanaAutomatica) {
+            semana = calculoSemana.calcular(fechaMovimiento);
+        } else if (calculoSemana instanceof SemanaManual) {
+            // Se deja el ultimo valor
+        }
     }
 }

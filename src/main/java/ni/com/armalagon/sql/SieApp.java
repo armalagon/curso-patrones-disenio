@@ -28,7 +28,6 @@ public class SieApp {
         } catch (DAOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String... args) {
