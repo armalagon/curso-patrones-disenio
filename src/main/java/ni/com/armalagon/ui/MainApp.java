@@ -17,8 +17,9 @@ import ni.com.armalagon.sql.PostgreSQLUrl;
  */
 public class MainApp {
 
-    public static void printAll(NovedadService novedadService) {
+    public static void printAll(DAOFactory daoFactory) {
         try {
+            NovedadService novedadService = new NovedadService(daoFactory);
             List<Novedad> novedades = novedadService.buscarTodos();
             for (Novedad novedad : novedades) {
                 System.out.printf("Novedad[nss=%d,semanas=%s]%n", novedad.getNss(), novedad.getSemana());
@@ -41,10 +42,10 @@ public class MainApp {
 
         System.out.println("Consulta al esquema PUBLIC...");
         daoFactory = DAOFactory.crearPublicDAOFactory(url);
-        printAll(new NovedadService(daoFactory));
+        printAll(daoFactory);
 
         System.out.println("Consulta al esquema FACTURA...");
         daoFactory = DAOFactory.crearFacturaDAOFactory(url);
-        printAll(new NovedadService(daoFactory));
+        printAll(daoFactory);
     }
 }
