@@ -11,7 +11,7 @@ import ni.com.armalagon.sql.JdbcUrl;
  * @since 1.0
  */
 class PublicDAOFactory implements DAOFactory {
-    private JdbcUrl url;
+    private final JdbcUrl url;
 
     public PublicDAOFactory(JdbcUrl url) {
         this.url = url;
