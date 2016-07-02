@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.logging.Logger;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -56,6 +57,7 @@ public class NovedadTest {
     }
 
     @Test
+    @Ignore
     public void noCambiarAlgoritmo() {
         alta.calcularSemana();
         log(alta);
@@ -71,5 +73,35 @@ public class NovedadTest {
 
         descanso.calcularSemana();
         log(descanso);
+    }
+
+    @Test
+    @Ignore
+    public void intercambiarAlgoritmo() {
+        alta.calcularSemana();
+        log(alta);
+
+        logger.info("Alta como baja");
+        alta.setSemanaCalculable(new SemanaBaja());
+        alta.calcularSemana();
+        log(alta);
+
+        logger.info("Alta como descanso");
+        alta.setSemanaCalculable(new SinCalculoSemana());
+        alta.calcularSemana();
+        log(alta);
+    }
+
+    @Test
+    public void sobreescribirCalculo() {
+        alta.calcularSemana();
+        log(alta);
+        logger.info("Se modifican las semanas");
+        alta.setSemana(new Semana(false, false, true, true, true));
+        log(alta);
+        // Se sobreescribe el valor anterior
+        // Error, no se debe permitir esto
+        alta.calcularSemana();
+        log(alta);
     }
 }

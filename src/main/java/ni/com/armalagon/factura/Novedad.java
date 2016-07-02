@@ -1,6 +1,7 @@
 package ni.com.armalagon.factura;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  *
@@ -9,6 +10,8 @@ import java.util.Date;
  * @since 1.0
  */
 public abstract class Novedad {
+    private static final Logger logger = Logger.getLogger(Novedad.class.getName());
+
     protected String nombreMovimiento;
     protected int nss;
     protected Date fechaMovimiento;
@@ -57,9 +60,10 @@ public abstract class Novedad {
         }
 
         if (calculoSemana instanceof SemanaAutomatica) {
+            logger.info("Se realiza calculo de las semanas");
             semana = calculoSemana.calcular(fechaMovimiento);
         } else if (calculoSemana instanceof SemanaManual) {
-            // Se deja el ultimo valor
+            logger.info("La semana es manual, no se realiza ningun calculo");
         }
     }
 }
