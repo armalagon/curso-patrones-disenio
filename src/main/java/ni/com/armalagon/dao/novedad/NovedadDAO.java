@@ -1,8 +1,9 @@
-package ni.com.armalagon.dao;
+package ni.com.armalagon.dao.novedad;
 
 import java.sql.ResultSet;
 import java.util.List;
 
+import ni.com.armalagon.dao.DAOException;
 import ni.com.armalagon.modelo.Novedad;
 
 /**

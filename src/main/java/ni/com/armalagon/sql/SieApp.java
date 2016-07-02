@@ -4,7 +4,7 @@ import java.util.List;
 
 import ni.com.armalagon.dao.DAOException;
 import ni.com.armalagon.dao.DAOFactory;
-import ni.com.armalagon.dao.NovedadDAO;
+import ni.com.armalagon.dao.novedad.NovedadDAO;
 import ni.com.armalagon.modelo.Novedad;
 
 /**

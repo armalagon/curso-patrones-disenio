@@ -1,5 +1,6 @@
 package ni.com.armalagon.dao;
 
+import ni.com.armalagon.dao.novedad.NovedadDAO;
 import ni.com.armalagon.sql.JdbcUrl;
 
 /**

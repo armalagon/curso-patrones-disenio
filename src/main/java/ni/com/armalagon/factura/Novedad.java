@@ -45,6 +45,9 @@ public abstract class Novedad {
     }
 
     public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
+        if (semanaCalculable == null) {
+            throw new IllegalArgumentException("Se requiere la implementacion del calculo de las semanas");
+        }
         this.calculoSemana = semanaCalculable;
     }
 

@@ -1,4 +1,4 @@
-package ni.com.armalagon.dao;
+package ni.com.armalagon.dao.novedad;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import ni.com.armalagon.dao.DAOException;
 import ni.com.armalagon.factura.Semana;
 import ni.com.armalagon.modelo.Novedad;
 import ni.com.armalagon.sql.JdbcUrl;
@@ -18,12 +19,12 @@ import ni.com.armalagon.sql.JdbcUtils;
  * @version 1.0
  * @since 1.0
  */
-public class NovedadFacturaDAO implements NovedadDAO {
-    private static final String SQL_TODOS = "select * from factura.novedad";
+public class NovedadPublicDAO implements NovedadDAO {
+    private static final String SQL_TODOS = "select * from public.novedad";
 
     private JdbcUrl url;
 
-    public NovedadFacturaDAO(JdbcUrl url) {
+    public NovedadPublicDAO(JdbcUrl url) {
         this.url = url;
     }
 
