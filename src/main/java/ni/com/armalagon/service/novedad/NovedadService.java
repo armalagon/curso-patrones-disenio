@@ -22,6 +22,10 @@ public class NovedadService {
         this.daoFactory = daoFactory;
     }
 
+    public DAOFactory getDaoFactory() {
+        return daoFactory;
+    }
+
     public List<Novedad> buscarTodos() throws ServiceException {
         try {
             return novedadDAO.buscarTodos();
