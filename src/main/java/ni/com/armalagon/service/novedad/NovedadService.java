@@ -1,6 +1,7 @@
 package ni.com.armalagon.service.novedad;
 
 import java.util.List;
+import java.util.Observable;
 
 import ni.com.armalagon.dao.DAOException;
 import ni.com.armalagon.dao.DAOFactory;
@@ -13,7 +14,7 @@ import ni.com.armalagon.modelo.Novedad;
  * @version 1.0
  * @since 1.0
  */
-public class NovedadService {
+public class NovedadService extends Observable {
     private final DAOFactory daoFactory;
     private final NovedadDAO novedadDAO;
 
@@ -26,6 +27,20 @@ public class NovedadService {
         return daoFactory;
     }
 
+    private void datoModificado() {
+        setChanged();
+        notifyObservers();
+    }
+
+    public void guardar(Novedad novedad) throws ServiceException {
+        try {
+            novedadDAO.insertar(novedad);
+            datoModificado();
+        } catch (DAOException exc) {
+            throw new ServiceException("No se pudo guardar el movimiento", exc);
+        }
+    }
+
     public List<Novedad> buscarTodos() throws ServiceException {
         try {
             return novedadDAO.buscarTodos();
@@ -34,3 +49,17 @@ public class NovedadService {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

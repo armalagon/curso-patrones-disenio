@@ -1,9 +1,6 @@
 package ni.com.armalagon.dao.novedad;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +18,37 @@ import ni.com.armalagon.sql.JdbcUtils;
  */
 public class NovedadFacturaDAO implements NovedadDAO {
     private static final String SQL_TODOS = "select * from factura.novedad";
+    private static final String SQL_INSERTAR = "insert into factura.novedad ("
+            + "nss, tipo_novedad, fecha_novedad, periodo, "
+            + "semana1, semana2, semana3, semana4, semana5) "
+            + "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     private JdbcUrl url;
 
     public NovedadFacturaDAO(JdbcUrl url) {
         this.url = url;
+    }
+
+    @Override
+    public Novedad insertar(Novedad novedad) throws DAOException {
+        try (
+                Connection cnn = JdbcUtils.open(url);
+                PreparedStatement pstmt = cnn.prepareStatement(SQL_INSERTAR);
+                ) {
+            pstmt.setInt(1, novedad.getNss());
+            pstmt.setInt(2, novedad.getIdTipoNovedad());
+            pstmt.setDate(3, new java.sql.Date(novedad.getFechaNovedad().getTime()));
+            pstmt.setInt(4, novedad.getPeriodo());
+            pstmt.setBoolean(5, novedad.getSemana().isSemana1());
+            pstmt.setBoolean(6, novedad.getSemana().isSemana2());
+            pstmt.setBoolean(7, novedad.getSemana().isSemana3());
+            pstmt.setBoolean(8, novedad.getSemana().isSemana4());
+            pstmt.setBoolean(9, novedad.getSemana().isSemana5());
+            pstmt.executeUpdate();
+        } catch (SQLException sqlExc) {
+            throw new DAOException("Ha ocurrido un error durante la insercion a la tabla factura.novedad", sqlExc);
+        }
+        return novedad;
     }
 
     @Override

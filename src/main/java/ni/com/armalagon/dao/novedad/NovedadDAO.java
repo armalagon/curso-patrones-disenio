@@ -13,6 +13,8 @@ import ni.com.armalagon.modelo.Novedad;
  * @since 1.0
  */
 public interface NovedadDAO {
+    Novedad insertar(Novedad novedad) throws DAOException;
+
     Novedad buscarPorId(Integer id) throws DAOException;
 
     List<Novedad> buscarTodos() throws DAOException;

@@ -43,27 +43,33 @@ public abstract class Novedad {
         return semana;
     }
 
-    public void setSemana(Semana semana) {
-        this.semana = semana;
-    }
-
     public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
-        if (semanaCalculable == null) {
-            throw new IllegalArgumentException("Se requiere la implementacion del calculo de las semanas");
-        }
         this.calculoSemana = semanaCalculable;
+        algoritmoRequerido();
     }
 
-    public void calcularSemana() {
+    private void algoritmoRequerido() {
         if (calculoSemana == null) {
             throw new IllegalStateException("Se requiere la implementacion del calculo de las semanas");
         }
+    }
 
+    public void calcularSemana() {
+        algoritmoRequerido();
         if (calculoSemana instanceof SemanaAutomatica) {
             logger.info("Se realiza calculo de las semanas");
             semana = calculoSemana.calcular(fechaMovimiento);
         } else if (calculoSemana instanceof SemanaManual) {
             logger.info("La semana es manual, no se realiza ningun calculo");
+        }
+    }
+
+    public void calcularSemana(Semana semana) {
+        algoritmoRequerido();
+        if (calculoSemana instanceof SemanaManual) {
+            this.semana = semana;
+        } else {
+            logger.info("El calculo es automatico, no se sobreescribe el valor");
         }
     }
 }

@@ -97,7 +97,7 @@ public class NovedadTest {
         alta.calcularSemana();
         log(alta);
         logger.info("Se modifican las semanas");
-        alta.setSemana(new Semana(false, false, true, true, true));
+        alta.calcularSemana(new Semana(false, false, true, true, true));
         log(alta);
         // Se sobreescribe el valor anterior
         // Error, no se debe permitir esto
