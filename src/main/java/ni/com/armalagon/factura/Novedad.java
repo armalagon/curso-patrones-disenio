@@ -68,7 +68,8 @@ public abstract class Novedad {
         if (calculoSemana instanceof SemanaManual) {
             // Validar semana 5 en periodos de 4
             if (semana.isSemana5() && Configuracion.getInstance().getPeriodo(fechaMovimiento).getTotalSemana() == 4) {
-                throw new IllegalArgumentException("El mes de la fecha de movimiento solo tiene 4 semanas");
+                String error = "No se puede marcar la semana 5, el mes de la fecha de movimiento solo tiene 4 semanas";
+                throw new IllegalArgumentException(error);
             }
             this.semana = semana;
         } else {
