@@ -45,7 +45,6 @@ public abstract class Novedad {
 
     public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
         this.calculoSemana = semanaCalculable;
-        algoritmoRequerido();
     }
 
     private void algoritmoRequerido() {
@@ -67,9 +66,13 @@ public abstract class Novedad {
     public void calcularSemana(Semana semana) {
         algoritmoRequerido();
         if (calculoSemana instanceof SemanaManual) {
+            // Validar semana 5 en periodos de 4
+            if (semana.isSemana5() && Configuracion.getInstance().getPeriodo(fechaMovimiento).getTotalSemana() == 4) {
+                throw new IllegalArgumentException("El mes de la fecha de movimiento solo tiene 4 semanas");
+            }
             this.semana = semana;
         } else {
-            logger.info("El calculo es automatico, no se sobreescribe el valor");
+            logger.info("No se actualizan las semanas porque el calculo es automatico");
         }
     }
 }
