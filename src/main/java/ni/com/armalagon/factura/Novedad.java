@@ -3,6 +3,8 @@ package ni.com.armalagon.factura;
 import java.util.Date;
 import java.util.logging.Logger;
 
+import ni.com.armalagon.modelo.Plaza;
+
 /**
  *
  * @author armalagon
@@ -16,6 +18,8 @@ public abstract class Novedad {
     protected int nss;
     protected Date fechaMovimiento;
     protected Semana semana;
+    protected Periodo periodo;
+    protected Plaza plaza;
 
     protected SemanaCalculable calculoSemana;
 
@@ -37,6 +41,22 @@ public abstract class Novedad {
 
     public void setFechaMovimiento(Date fechaMovimiento) {
         this.fechaMovimiento = fechaMovimiento;
+    }
+
+    public Periodo getPeriodo() {
+        return periodo;
+    }
+
+    public void setPeriodo(Periodo periodo) {
+        this.periodo = periodo;
+    }
+
+    public Plaza getPlaza() {
+        return plaza;
+    }
+
+    public void setPlaza(Plaza plaza) {
+        this.plaza = plaza;
     }
 
     public Semana getSemana() {
@@ -76,4 +96,6 @@ public abstract class Novedad {
             logger.info("No se actualizan las semanas porque el calculo es automatico");
         }
     }
+
+    public abstract void validar() throws NovedadException;
 }

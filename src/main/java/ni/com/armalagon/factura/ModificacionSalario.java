@@ -12,4 +12,11 @@ public class ModificacionSalario extends Novedad {
         nombreMovimiento = "Modificacion Salario";
         calculoSemana = new SemanaAlta();
     }
+
+    @Override
+    public void validar() throws NovedadException {
+        if (plaza == null || !plaza.isActivo()) {
+            throw new NovedadException("El asegurado debe estar ACTIVO en la nomina");
+        }
+    }
 }

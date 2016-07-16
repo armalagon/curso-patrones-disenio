@@ -50,6 +50,10 @@ public class Configuracion {
         return getPeriodo(periodo);
     }
 
+    public Periodo getPeriodo() {
+        return getPeriodo(new Date());
+    }
+
     public Periodo getPeriodo(int anio, int mes) {
         int periodo = anio*100 + mes;
         return getPeriodo(periodo);

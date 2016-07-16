@@ -12,4 +12,11 @@ public class Baja extends Novedad {
         nombreMovimiento = "Baja";
         calculoSemana = new SemanaBaja();
     }
+
+    @Override
+    public void validar() throws NovedadException {
+        if (plaza == null || !plaza.isActivo()) {
+            throw new NovedadException("El asegurado debe estar ACTIVO en la nomina");
+        }
+    }
 }

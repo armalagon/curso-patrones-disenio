@@ -14,8 +14,8 @@ import org.junit.Test;
  * @version 1.0
  * @since 1.0
  */
-public class NovedadTest {
-    private static final Logger logger = Logger.getLogger(NovedadTest.class.getName());
+public class NovedadCalculoSemanaTest {
+    private static final Logger logger = Logger.getLogger(NovedadCalculoSemanaTest.class.getName());
 
     private SimpleDateFormat format;
     private Novedad alta;
@@ -24,7 +24,7 @@ public class NovedadTest {
     private Novedad salida;
     private Novedad descanso;
 
-    public NovedadTest() {
+    public NovedadCalculoSemanaTest() {
         format = new SimpleDateFormat("dd/MM/yyyy");
     }
 
