@@ -21,7 +21,11 @@ public abstract class Novedad {
     protected Periodo periodo;
     protected Plaza plaza;
 
+    // ------------------------------------------------------------------------
+    // Algoritmos
+    // ------------------------------------------------------------------------
     protected SemanaCalculable calculoSemana;
+    protected PeriodoValidable validarPeriodo;
 
     public String getNombreMovimiento() {
         return nombreMovimiento;
@@ -65,6 +69,10 @@ public abstract class Novedad {
 
     public void setSemanaCalculable(SemanaCalculable semanaCalculable) {
         this.calculoSemana = semanaCalculable;
+    }
+
+    public void setValidarPeriodo(PeriodoValidable validarPeriodo) {
+        this.validarPeriodo = validarPeriodo;
     }
 
     private void algoritmoRequerido() {

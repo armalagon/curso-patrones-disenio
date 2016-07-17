@@ -11,12 +11,11 @@ public class Descanso extends Novedad {
     public Descanso() {
         nombreMovimiento = "Descanso";
         calculoSemana = new SinCalculoSemana();
+        validarPeriodo = new FechaMovimientoEnRango();
     }
 
     @Override
     public void validar() throws NovedadException {
-        if (plaza == null || !plaza.isActivo()) {
-            throw new NovedadException("El asegurado debe estar ACTIVO en la nomina");
-        }
+        validarPeriodo.validar(fechaMovimiento, periodo);
     }
 }

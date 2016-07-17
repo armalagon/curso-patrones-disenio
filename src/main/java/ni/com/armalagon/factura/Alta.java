@@ -11,12 +11,11 @@ public class Alta extends Novedad {
     public Alta() {
         nombreMovimiento = "Alta";
         calculoSemana = new SemanaAlta();
+        validarPeriodo = new FechaMovimientoEnRango();
     }
 
     @Override
     public void validar() throws NovedadException {
-        if (plaza != null && plaza.isActivo()) {
-            throw new NovedadException("El asegurado ya se encuentra ACTIVO en la nomina");
-        }
+        validarPeriodo.validar(fechaMovimiento, periodo);
     }
 }

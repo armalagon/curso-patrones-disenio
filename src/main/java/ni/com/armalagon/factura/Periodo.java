@@ -16,7 +16,7 @@ import ni.com.armalagon.util.DateUtils;
  * @version 1.0
  * @since 1.0
  */
-public class Periodo {
+public class Periodo implements Comparable<Periodo> {
     private final int anio, mes;
     private final String formatoCadena; // MMMyyyy
     private final int formatoNumerico;
@@ -48,6 +48,12 @@ public class Periodo {
 
     public int getTotalSemana() {
         return totalSemana;
+    }
+
+    @Override
+    public int compareTo(Periodo otro) {
+        int dif = formatoNumerico - otro.getFormatoNumerico();
+        return dif == 0 ? 0 : (dif > 0 ? 1 : -1);
     }
 
     @Override
