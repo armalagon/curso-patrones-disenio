@@ -52,8 +52,7 @@ public class Periodo implements Comparable<Periodo> {
 
     @Override
     public int compareTo(Periodo otro) {
-        int dif = formatoNumerico - otro.getFormatoNumerico();
-        return dif == 0 ? 0 : (dif > 0 ? 1 : -1);
+        return formatoNumerico - otro.getFormatoNumerico();
     }
 
     @Override
