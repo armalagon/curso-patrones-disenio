@@ -1,6 +1,7 @@
 package ni.com.armalagon.ui;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import ni.com.armalagon.factura.*;
 
@@ -13,9 +14,13 @@ import ni.com.armalagon.factura.*;
 public class NovedadValidacionTest {
 
     public static void main(String... args) {
+        Calendar fecha = GregorianCalendar.getInstance();
+        fecha.add(Calendar.MONTH, 1);
+
         Novedad novedad = new Alta();
         novedad.setNss(16146068);
-        novedad.setFechaMovimiento(new Date());
+        //novedad.setFechaMovimiento(new Date());
+        novedad.setFechaMovimiento(fecha.getTime());
         novedad.setPeriodo(Configuracion.getInstance().getPeriodo());
         novedad.setPlaza(null);
 
